@@ -13,11 +13,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Find and Replace
-      uses: jacobtomlinson/gha-find-replace@v2
+      uses: visiosto/replace-value@v1.2.1
       with:
-        find: "// swift-tools-version:5.6"
-        replace: "// swift-tools-version:5.5"
-        regex: false
-        include: "Package.swift"
+        file: "Package.swift"
+        value: "swift-tools-version:5.6"
+        replaced: "swift-tools-version:5.5"
     - name: Run tests
       run: swift test -v
