@@ -8,15 +8,15 @@ public func almostEquals<T: BinaryFloatingPoint>(_ a: T, _ b: T, _ smallEpsilon:
         return diff < largeEpsilon;
     }
 }
-]
+
 public extension Float {
     func almostEquals(_ rhs: Self) -> Bool {
-        return almostEquals(self, rhs, 1e-3, 0.1)
+        return Swift_Math.almostEquals(self, rhs, 1e-3, 0.1)
     }
 }
 
 public extension Double {
     func almostEquals(_ rhs: Double) -> Bool {
-        return almostEquals(self, rhs, 1e-6, 0.1)
+        return Swift_Math.almostEquals(self, rhs, 1e-6, 0.1)
     }
 }
