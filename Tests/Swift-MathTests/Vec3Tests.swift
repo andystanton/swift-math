@@ -3,7 +3,7 @@ import XCTest
  
 class Vec3Tests: XCTestCase {
  
-    override func setUpWithError() throws {}
+    override func setUpWithError() throws {
     }
  
     override func tearDownWithError() throws {
