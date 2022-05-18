@@ -12,11 +12,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Find and Replace
-      uses: visiosto/replace-value@v1.2.1
-      with:
-        file: "Package.swift"
-        value: "swift-tools-version:5.6"
-        replaced: "swift-tools-version:5.5"
+    - name: Set swift tools version for test
+      run: |
+        cat Package.swift
+        sed -I '' 's/swift-tools-version:5.6/swift-tools-version:5.5/' Package.swift
+        cat Package.swift
     - name: Run tests
       run: swift test -v
