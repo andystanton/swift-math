@@ -1,9 +1,9 @@
-typealias DVec2 = Vec2<Double>
-typealias FVec2 = Vec2<Float>
-typealias UVec2 = Vec2<UInt>
-typealias IVec2 = Vec2<Int>
+public typealias DVec2 = Vec2<Double>
+public typealias FVec2 = Vec2<Float>
+public typealias UVec2 = Vec2<UInt>
+public typealias IVec2 = Vec2<Int>
 
-extension Vec2 {
+public extension Vec2 {
     init(_ s: T) {
         self.init(x: s, y: s)
     }
@@ -13,7 +13,7 @@ extension Vec2 {
     }
 }
 
-struct Vec2<T: Numeric> {
+public struct Vec2<T: Numeric> {
     let x: T
     let y: T
     
