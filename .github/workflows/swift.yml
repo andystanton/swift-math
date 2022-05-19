@@ -30,13 +30,13 @@ jobs:
         search_commit_body: false
     - name: Create tag
       uses: actions/github-script@v5
-      if: ${{ get-next-version.changed }}
+      if: ${{ steps.get-next-version.outputs.changed }}
       with:
         script: |
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: "refs/tags/${{ get-next-version.version }}",
+            ref: "refs/tags/${{ steps.get-next-version.outputs.version_tag }}",
             sha: context.sha
           })
 
