@@ -1,49 +1,49 @@
-typealias DVec4 = Vec4<Double>
-typealias FVec4 = Vec4<Float>
-typealias IVec4 = Vec4<Int>
-typealias UVec4 = Vec4<UInt>
+public typealias DVec4 = Vec4<Double>
+public typealias FVec4 = Vec4<Float>
+public typealias IVec4 = Vec4<Int>
+public typealias UVec4 = Vec4<UInt>
 
-extension Vec4 where T == Double {
+public extension Vec4 where T == Double {
     static var xUnit = DVec4(1.0, 0.0, 0.0, 0.0)
     static var yUnit = DVec4(0.0, 1.0, 0.0, 0.0)
     static var zUnit = DVec4(0.0, 0.0, 1.0, 0.0)
     static var wUnit = DVec4(0.0, 0.0, 0.0, 1.0)
 }
 
-extension Vec4 where T == Float {
+public extension Vec4 where T == Float {
     static var xUnit = FVec4(1.0, 0.0, 0.0, 0.0)
     static var yUnit = FVec4(0.0, 1.0, 0.0, 0.0)
     static var zUnit = FVec4(0.0, 0.0, 1.0, 0.0)
     static var wUnit = FVec4(0.0, 0.0, 0.0, 1.0)
 }
 
-extension Vec4 where T == Int {
+public extension Vec4 where T == Int {
     static var xUnit = IVec4(1, 0, 0, 0)
     static var yUnit = IVec4(0, 1, 0, 0)
     static var zUnit = IVec4(0, 0, 1, 0)
     static var wUnit = IVec4(0, 0, 0, 1)
 }
 
-extension Vec4 where T == UInt {
+public extension Vec4 where T == UInt {
     static var xUnit = UVec4(1, 0, 0, 0)
     static var yUnit = UVec4(0, 1, 0, 0)
     static var zUnit = UVec4(0, 0, 1, 0)
     static var wUnit = UVec4(0, 0, 0, 1)
 }
 
-//extension Vec4 where T == Float {
-//    func toSIMD4() -> SIMD4<T> {
-//        return SIMD4<T>(x, y, z, w)
-//    }
-//}
-//
-//extension Vec4 where T == Double {
-//    func toSIMD4() -> SIMD4<T> {
-//        return SIMD4<T>(x, y, z, w)
-//    }
-//}
+extension Vec4 where T == Float {
+    func toSIMD4() -> SIMD4<T> {
+        return SIMD4<T>(x, y, z, w)
+    }
+}
 
-extension Vec4 {
+extension Vec4 where T == Double {
+    func toSIMD4() -> SIMD4<T> {
+        return SIMD4<T>(x, y, z, w)
+    }
+}
+
+public extension Vec4 {
     init(_ s: T) {
         self.init(x: s, y: s, z: s, w: s)
     }
@@ -61,7 +61,7 @@ extension Vec4 {
     }
 }
 
-struct Vec4<T: Numeric> {
+public struct Vec4<T: Numeric> {
     let x: T
     let y: T
     let z: T

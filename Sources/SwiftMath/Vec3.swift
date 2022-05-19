@@ -1,9 +1,9 @@
-typealias DVec3 = Vec3<Double>
-typealias FVec3 = Vec3<Float>
-typealias IVec3 = Vec3<Int>
-typealias UVec3 = Vec3<UInt>
+public typealias DVec3 = Vec3<Double>
+public typealias FVec3 = Vec3<Float>
+public typealias IVec3 = Vec3<Int>
+public typealias UVec3 = Vec3<UInt>
 
-extension Vec3 {
+public extension Vec3 {
     init(_ s: T) {
         self.init(x: s, y: s, z: s)
     }
@@ -21,33 +21,33 @@ extension Vec3 {
     }
 }
 
-//extension Vec3: Hashable, Equatable where T: Hashable, T: Equatable {
-//    static func == (lhs: Vec3, rhs: Vec3) -> Bool {
-//        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
-//    }
-//    
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(x)
-//        hasher.combine(y)
-//        hasher.combine(z)
-//    }
-//}
+extension Vec3: Hashable, Equatable where T: Hashable {
+    public static func == (lhs: Vec3, rhs: Vec3) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(x)
+        hasher.combine(y)
+        hasher.combine(z)
+    }
+}
 
 
 
-//extension Vec3 where T == Float {
-//    func toSIMD3() -> SIMD3<T> {
-//        return SIMD3<T>(x, y, z)
-//    }
-//}
-
-extension Vec3 where T == Double {
+extension Vec3 where T == Float {
     func toSIMD3() -> SIMD3<T> {
         return SIMD3<T>(x, y, z)
     }
 }
 
-struct Vec3<T: Numeric> {
+ public extension Vec3 where T == Double { 
+     func toSIMD3() -> SIMD3<T> { 
+         return SIMD3<T>(x, y, z) 
+     } 
+ } 
+
+public struct Vec3<T: Numeric> {
     let x: T
     let y: T
     let z: T
@@ -69,9 +69,9 @@ struct Vec3<T: Numeric> {
         }
     }
     
-    var xy: Vec2<T> {
-        return Vec2(x: x, y: y)
-    }
+    // var xy: Vec2<T> {
+    //     return Vec2(x: x, y: y)
+    // }
     
     func dot(_ rhs: Vec3<T>) -> T {
         return self.x * rhs.x + self.y * rhs.y + self.z * rhs.z
