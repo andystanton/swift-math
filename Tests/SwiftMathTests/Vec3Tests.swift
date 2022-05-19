@@ -12,8 +12,4 @@ class Vec3Tests: XCTestCase {
     func testTrue() throws {
         XCTAssert(true, "Something that's true")
     }
-
-    func testFalse() throws {
-        XCTAssert(false, "Something that's false")
-    }
 }
