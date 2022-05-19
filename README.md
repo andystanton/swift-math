@@ -25,4 +25,3 @@ A swift math package usable from Swift Playgrounds 4 Apps. As this is a hacky wo
 
 Note: In Playgrounds 4.1 on iPad, after doing 'Update All Package Dependencies', the 'Remove Package Dependency' does not display until you close and re-open the project.
 
-
