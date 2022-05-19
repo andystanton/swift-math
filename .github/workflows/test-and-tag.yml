@@ -1,15 +1,12 @@
-name: Swift
+name: Test And Tag
 
 on:
   push:
     branches: [ main ]
     paths-ignore: [ 'README.md', '.gitignore' ]
-  pull_request:
-    branches: [ main ]
-    paths-ignore: [ 'README.md', '.gitignore' ]
 
 jobs:
-  test:
+  test_and_tag:
     runs-on: macos-latest
 
     steps:
