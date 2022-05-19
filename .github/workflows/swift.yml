@@ -15,10 +15,5 @@ jobs:
     - uses: swift-actions/setup-swift@v1
       with:
         swift-version: "5.6"
-    # - name: Set swift tools version for test
-    #   run: |
-    #     cat Package.swift
-    #     sed -I '' 's/swift-tools-version:5.6/swift-tools-version:5.5/' Package.swift
-    #     cat Package.swift
     - name: Run tests
       run: swift test -v
