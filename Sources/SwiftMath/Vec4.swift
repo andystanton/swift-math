@@ -62,10 +62,10 @@ public extension Vec4 {
 }
 
 public struct Vec4<T: Numeric> {
-    let x: T
-    let y: T
-    let z: T
-    let w: T
+    public let x: T
+    public let y: T
+    public let z: T
+    public let w: T
     
     var xyz: Vec3<T> {
         return Vec3(x: x, y: y, z: z)

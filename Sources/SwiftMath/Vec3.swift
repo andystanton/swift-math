@@ -48,9 +48,9 @@ extension Vec3 where T == Float {
  } 
 
 public struct Vec3<T: Numeric> {
-    let x: T
-    let y: T
-    let z: T
+    public let x: T
+    public let y: T
+    public let z: T
     
     subscript(index: Int) -> T {
         get {
