@@ -17,9 +17,9 @@ jobs:
         swift-version: "5.6"
     - name: Run tests
       run: swift test -v
-    - uses: paulhatch/semantic-version@v4.0.2
+    - uses: paulhatch/semantic-version@v5.0.0-alpha2
       with:
         tag_prefix: ""
-        change_path: "Sources Package.swift"
+        change_path: "Sources Package.swift .github"
         search_commit_body: false
 
