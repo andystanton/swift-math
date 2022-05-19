@@ -3,8 +3,10 @@ name: Swift
 on:
   push:
     branches: [ main ]
+    paths-ignore: [ 'README.md', '.gitignore' ]
   pull_request:
     branches: [ main ]
+    paths-ignore: [ 'README.md', '.gitignore' ]
 
 jobs:
   test:
@@ -30,7 +32,7 @@ jobs:
         search_commit_body: false
     - name: Create tag
       uses: actions/github-script@v5
-      if: ${{ steps.get-next-version.outputs.changed }}
+      if: ${{ steps.get-next-version.outputs.changed == 'true' }}
       with:
         script: |
           github.rest.git.createRef({
