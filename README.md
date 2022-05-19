@@ -1,6 +1,6 @@
 # swift-math
 
-A swift math package usable from Swift Playgrounds 4 Apps. As this is a hacky work in progress, every source commit generates a new tag which can be updated to in Swift Playgrounds.
+A Swift math package usable from Apps made in Swift Playgrounds 4 on iPad. As this is a hacky work in progress, every source commit generates a new tag which can be updated to in Swift Playgrounds.
 
 ## Installation
 
@@ -16,6 +16,8 @@ A swift math package usable from Swift Playgrounds 4 Apps. As this is a hacky wo
 
 - Long press on the Packages item in the side bar.
 - Choose 'Update All Package Dependencies'.
+
+Note: In Playgrounds 4.1 on iPad, after doing 'Update All Package Dependencies', the contents of the packages are not refreshed until you close and re-open the project.
 
 ## Removal
 
