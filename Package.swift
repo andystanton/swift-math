@@ -3,20 +3,20 @@
 import PackageDescription
  
 let package = Package(
-    name: "Swift-Math",
+    name: "SwiftMath",
     platforms: [.iOS("15.2")],
     products: [
         .library(
-            name: "Swift-Math",
-            targets: ["Swift-Math"]),
+            name: "SwiftMath",
+            targets: ["SwiftMath"]),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "Swift-Math",
+            name: "SwiftMath",
             dependencies: []),
         .testTarget(
-            name: "Swift-MathTests",
-            dependencies: ["Swift-Math"]),
+            name: "SwiftMathTests",
+            dependencies: ["SwiftMath"]),
     ]
 )
