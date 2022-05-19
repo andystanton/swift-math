@@ -21,10 +21,22 @@ jobs:
         swift-version: "5.6"
     - name: Run tests
       run: swift test -v
-    - name: Create release tag
+    - name: Get next version
+      id: get-next-version
       uses: paulhatch/semantic-version@v5.0.0-alpha2
       with:
         tag_prefix: ""
         change_path: "Sources Package.swift .github"
         search_commit_body: false
+    - name: Create tag
+      uses: actions/github-script@v5
+      if: ${{ get-next-version.changed }}
+      with:
+        script: |
+          github.rest.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: "refs/tags/${{ get-next-version.version }}",
+            sha: context.sha
+          })
 
