@@ -106,12 +106,12 @@ public struct Vec3<T: Numeric> {
         return Vec4<T>(self, 0)
     }
     
-    static func ~=(lhs: Vec3<T>, rhs: Vec3<T>) -> Bool where T == Double { 
-        return lhs.x.almostEquals(rhs.x) && lhs.y.almostEquals(rhs.y) && lhs.z.almostEquals(rhs.z)
+    func almostEquals(_ rhs: Vec3<T>) -> Bool where T == Double { 
+        return self.x.almostEquals(rhs.x) && self.y.almostEquals(rhs.y) && self.z.almostEquals(rhs.z)
     }    
     
-    static func ~=(lhs: Vec3<T>, rhs: Vec3<T>) -> Bool where T == Float {
-        return lhs.x.almostEquals(rhs.x) && lhs.y.almostEquals(rhs.y) && lhs.z.almostEquals(rhs.z)
+    func almostEquals(_ rhs: Vec3<T>) -> Bool where T == Float {
+        return self.x.almostEquals(rhs.x) && self.y.almostEquals(rhs.y) && self.z.almostEquals(rhs.z)
     }
     
 //    static func ==(lhs: Vec3<T>, rhs: Vec3<T>) -> Bool {
