@@ -2,7 +2,7 @@ name: Create Tag
 
 on:
   workflow_run:
-    workflows:  [ "run_tests" ]
+    workflows:  [ "Run Tests" ]
     branches: [ main ]
     types:
       - completed
