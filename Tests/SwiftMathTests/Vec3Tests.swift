@@ -44,4 +44,25 @@ class Vec3Tests: XCTestCase {
         let actual = candidate.len()
         XCTAssertEqual(actual, expected, "Length failed")
     }
+
+    func testNormalise() {
+        let expected = DVec3((1.0/3.0).squareRoot())
+        let candidate = DVec3(x: 1.0, y: 1.0, z: 1.0)
+        let actual = candidate.normalize()
+        XCTAssertTrue(actual.almostEquals(expected), "Normalise failed")
+    }
+
+    func testUniformScale() {
+        let expected = DVec3(x: 2.0, y: 4.0, z: 6.0)
+        let candidate = DVec3(x: 1.0, y: 2.0, z: 3.0)
+        let actual = candidate * 2.0
+        XCTAssertTrue(actual.almostEquals(expected), "Uniform Scale failed")
+    }
+
+    func testNonUniformScale() {
+        let expected = DVec3(x: 2.0, y: 6.0, z: 12.0)
+        let candidate = DVec3(x: 1.0, y: 2.0, z: 3.0)
+        let actual = candidate * DVec3(x: 2.0, y: 3.0, z: 4.0)
+        XCTAssertTrue(actual.almostEquals(expected), "Non-Uniform Scale failed")
+    }
 }
