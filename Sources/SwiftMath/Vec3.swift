@@ -33,8 +33,6 @@ extension Vec3: Hashable, Equatable where T: Hashable {
     }
 }
 
-
-
 extension Vec3 where T == Float {
     func toSIMD3() -> SIMD3<T> {
         return SIMD3<T>(x, y, z)
@@ -46,6 +44,30 @@ extension Vec3 where T == Float {
          return SIMD3<T>(x, y, z) 
      } 
  } 
+
+public extension Vec3 where T == Double {
+    static var xUnit = Self(1, 0, 0)
+    static var yUnit = Self(0, 1, 0)
+    static var zUnit = Self(0, 0, 1)
+}
+
+public extension Vec3 where T == Float {
+    static var xUnit = Self(1, 0, 0)
+    static var yUnit = Self(0, 1, 0)
+    static var zUnit = Self(0, 0, 1)
+}
+
+public extension Vec3 where T == Int {
+    static var xUnit = Self(1, 0, 0)
+    static var yUnit = Self(0, 1, 0)
+    static var zUnit = Self(0, 0, 1)
+}
+
+public extension Vec3 where T == UInt {
+    static var xUnit = Self(1, 0, 0)
+    static var yUnit = Self(0, 1, 0)
+    static var zUnit = Self(0, 0, 1)
+}
 
 public struct Vec3<T: Numeric> {
     public let x: T
