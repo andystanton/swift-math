@@ -1,14 +1,13 @@
-name: Test PR
+name: Run Tests
 
 on:
-  pull_request:
+  push:
     branches: [ main ]
     paths-ignore: [ 'README.md', '.gitignore' ]
 
 jobs:
-  test:
+  run_tests:
     runs-on: macos-latest
-
     steps:
     - name: Checkout project including tags
       uses: actions/checkout@v3
