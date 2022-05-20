@@ -37,4 +37,11 @@ class Vec3Tests: XCTestCase {
         ].map { v in [v.x, v.y, v.z]}
         XCTAssertEqual(actual, expected, "Axial Units failed")
     }
+
+    func testLength() {
+        let expected: Double = 7.0
+        let candidate = DVec3(x: 2.0, y: 3.0, z: 6.0)
+        let actual = candidate.len()
+        XCTAssertEqual(actual, expected, "Length failed")
+    }
 }
