@@ -1,20 +1,22 @@
-name: Create Tag
+name: Run Tests and Create Tag
 
 on:
-  workflow_run:
-    workflows:  [ "Run Tests" ]
+  push:
     branches: [ main ]
-    types:
-      - completed
+    paths-ignore: [ 'README.md', '.gitignore' ]
 
 jobs:
-  create_tag:
-    runs-on: ubuntu-latest
+  run_tests_and_create_tag:
+    runs-on: macos-latest
     steps:
     - name: Checkout project including tags
       uses: actions/checkout@v3
+    - name: Set Swift version to same as Swift Playgrounds
+      uses: swift-actions/setup-swift@v1
       with:
-        fetch-depth: 0
+        swift-version: "5.6"
+    - name: Run tests
+      run: swift test -v
     - name: Get next version
       id: get-next-version
       uses: paulhatch/semantic-version@v5.0.0-alpha2
