@@ -31,19 +31,6 @@ extension Vec4 where T == UInt {
     public static var wUnit = UVec4(0, 0, 0, 1)
 }
 
-extension Vec4: Hashable, Equatable where T: Hashable {
-    public static func == (lhs: Vec4, rhs: Vec4) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(x)
-        hasher.combine(y)
-        hasher.combine(z)
-        hasher.combine(w)
-    }
-}
-
 extension Vec4 where T == Float {
     func toSIMD4() -> SIMD4<T> {
         return SIMD4<T>(x, y, z, w)
@@ -110,6 +97,20 @@ public struct Vec4<T: Numeric> {
             .squareRoot()
     }
 
+    static func == (lhs: Vec4<T>, rhs: Vec4<T>) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w
+    }
+
+    static func ~= (lhs: Vec4<T>, rhs: Vec4<T>) -> Bool where T == Double {
+        return lhs.x.almostEquals(rhs.x) && lhs.y.almostEquals(rhs.y) && lhs.z.almostEquals(rhs.z)
+            && lhs.w.almostEquals(rhs.w)
+    }
+
+    static func ~= (lhs: Vec4<T>, rhs: Vec4<T>) -> Bool where T == Float {
+        return lhs.x.almostEquals(rhs.x) && lhs.y.almostEquals(rhs.y) && lhs.z.almostEquals(rhs.z)
+            && lhs.w.almostEquals(rhs.w)
+    }
+
     static func + (lhs: Vec4<T>, rhs: Vec4<T>) -> Vec4<T> {
         return Vec4(x: lhs.x + rhs.x, y: lhs.y + rhs.y, z: lhs.z + rhs.z, w: lhs.w + rhs.w)
     }
@@ -145,15 +146,5 @@ public struct Vec4<T: Numeric> {
 
     static func / (lhs: Vec4<T>, s: T) -> Vec4<T> where T: BinaryInteger {
         return Vec4(x: lhs.x / s, y: lhs.y / s, z: lhs.z / s, w: lhs.w / s)
-    }
-
-    func almostEquals(_ rhs: Vec4<T>) -> Bool where T == Double {
-        return self.x.almostEquals(rhs.x) && self.y.almostEquals(rhs.y)
-            && self.z.almostEquals(rhs.z) && self.w.almostEquals(rhs.w)
-    }
-
-    func almostEquals(_ rhs: Vec4<T>) -> Bool where T == Float {
-        return self.x.almostEquals(rhs.x) && self.y.almostEquals(rhs.y)
-            && self.z.almostEquals(rhs.z) && self.w.almostEquals(rhs.w)
     }
 }

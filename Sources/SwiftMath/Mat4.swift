@@ -36,23 +36,16 @@ public struct Mat4<T: FloatingPoint> {
     }
 
     static func rotation(_ rVec: Vec3<T>) -> Mat4<T> where T == Double {
-        let col1 = [cos(rVec.y) * cos(rVec.z), cos(rVec.y) * sin(rVec.z), -sin(rVec.y), 0]
-        let col2 = [
-            sin(rVec.x) * sin(rVec.y) * cos(rVec.z) - cos(rVec.x) * sin(rVec.z),
-            cos(rVec.x) * cos(rVec.z) + sin(rVec.x) * sin(rVec.y) * sin(rVec.z),
-            sin(rVec.x) * cos(rVec.y), 0,
-        ]
-        let col3 = [
-            sin(rVec.x) * sin(rVec.z) + cos(rVec.x) * sin(rVec.y) * cos(rVec.z),
-            cos(rVec.x) * sin(rVec.y) * sin(rVec.z) - sin(rVec.x) * cos(rVec.z),
-            cos(rVec.x) * cos(rVec.y), 0,
-        ]
-        return Mat4(data: [
-            col1,
-            col2,
-            col3,
-            [0, 0, 0, 1],
-        ])
+        return Mat4(1)
+        //        let col1 = [cos(rVec.x) * cos(rVec.y), sin(rVec.x) * cos(rVec.y), -sin(rVec.y), 0]
+        //        let col2 = [cos(rVec.x) * sin(rVec.y) * sin(rVec.z) - sin(rVec.x) * cos(rVec.z), sin(rVec.x) * sin(rVec.y) * sin(rVec.z) + cos(rVec.x) * cos(rVec.z), cos(rVec.y) * sin(rVec.z), 0]
+        //        let col3 = [cos(rVec.x) * sin(rVec.y) * cos(rVec.z) + sin(rVec.x) * sin(rVec.z), sin(rVec.x) * sin(rVec.y) * cos(rVec.z) - cos(rVec.x) * sin(rVec.z), cos(rVec.y) * cos(rVec.z), 0]
+        //        return Mat4(data: [
+        //            col1,
+        //            col2,
+        //            col3,
+        //            [0, 0, 0, 1],
+        //        ])
     }
 
     static func rotation(_ rVec: Vec3<T>) -> Mat4<T> where T == Float {
@@ -71,15 +64,6 @@ public struct Mat4<T: FloatingPoint> {
             col1,
             col2,
             col3,
-            [0, 0, 0, 1],
-        ])
-    }
-
-    static func scale(_ rVec: Vec3<T>) -> Mat4<T> where T == Double {
-        return Mat4(data: [
-            [rVec.x, 0, 0, 0],
-            [0, rVec.y, 0, 0],
-            [0, 0, rVec.z, 0],
             [0, 0, 0, 1],
         ])
     }

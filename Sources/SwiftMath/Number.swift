@@ -1,10 +1,10 @@
-public func almostEquals<T: FloatingPoint>(
+public func almostEquals<T: BinaryFloatingPoint>(
     _ a: T, _ b: T, _ smallEpsilon: T, _ largeEpsilon: T
 ) -> Bool {
     let diff = (a - b).magnitude
     if a == b {
         return true
-    } else if diff < 1 {
+    } else if diff < 1.0 {
         return diff < smallEpsilon
     } else {
         return diff < largeEpsilon

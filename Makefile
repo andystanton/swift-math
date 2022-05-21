@@ -1,7 +1,6 @@
 $PHONY: clean test format
 
-override ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-filter:=.*
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 all: test
 
@@ -10,7 +9,7 @@ clean:
 	@rm -rf .build
 
 test:
-	@swift test --filter "$(filter)"
+	@swift test
 
 format:
 	@echo "Formatting project"
