@@ -16,5 +16,5 @@ jobs:
       with:
         swift-version: "5.6"
     - name: Run tests
-      run: make test
+      run: swift test
 
