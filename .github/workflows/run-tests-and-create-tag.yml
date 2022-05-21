@@ -3,7 +3,7 @@ name: Run Tests and Create Tag
 on:
   push:
     branches: [ main ]
-    paths-ignore: [ 'README.md', '.gitignore' ]
+    paths-ignore: [ '.gitignore', 'README.md', 'LICENSE' ]
 
 jobs:
   run_tests_and_create_tag:
