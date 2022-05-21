@@ -65,4 +65,32 @@ class Vec3Tests: XCTestCase {
         let actual = candidate * DVec3(x: 2, y: 3, z: 4)
         XCTAssertTrue(actual.almostEquals(expected), "Non-Uniform Scale failed")
     }
+
+    func testDVec3UniformDivison() {
+        let expected = DVec3(x: 1, y: 2, z: 3)
+        let candidate = DVec3(x: 2, y: 4, z: 6)
+        let actual = candidate / 2
+        XCTAssertEqual(actual, expected, "Uniform Division failed")
+    }
+
+    func testDVec3NonUniformDivison() {
+        let expected = DVec3(x: 1, y: 2, z: 3)
+        let candidate = DVec3(x: 2, y: 6, z: 12)
+        let actual = candidate / DVec3(x: 2, y: 3, z: 4)
+        XCTAssertEqual(actual, expected, "Non-Uniform Division failed")
+    }
+
+    func testDVec3Addition() {
+        let expected = DVec3(x: 3, y: 5, z: 7)
+        let candidate = DVec3(x: 1, y: 2, z: 3)
+        let actual = candidate + DVec3(x: 2, y: 3, z: 4)
+        XCTAssertEqual(actual, expected, "Addition failed")
+    }
+
+    func testDVec3Subtraction() {
+        let expected = DVec3(x: 1, y: 2, z: 3)
+        let candidate = DVec3(x: 3, y: 5, z: 7)
+        let actual = candidate - DVec3(x: 2, y: 3, z: 4)
+        XCTAssertEqual(actual, expected, "Subtraction failed")
+    }
 }
