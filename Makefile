@@ -1,4 +1,6 @@
-.PHONY: clean test
+$PHONY: clean test format
+
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 all: test
 
@@ -9,3 +11,6 @@ clean:
 test:
 	@swift test
 
+format:
+	@echo "Formatting project"
+	@swift-format -ir $(ROOT_DIR)

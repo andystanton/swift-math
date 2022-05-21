@@ -3,7 +3,7 @@ name: Run Tests PR
 on:
   pull_request:
     branches: [ main ]
-    paths-ignore: [ '.gitignore', 'README.md', 'LICENSE' ]
+    paths-ignore: [ '.gitignore', '.swift-format', 'README.md', 'LICENSE' ]
 
 jobs:
   run_tests_pr:
