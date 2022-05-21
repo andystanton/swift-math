@@ -59,6 +59,5 @@ extension Mat4 {
         return Mat4<T>(data: [
             col1, col2, col3, col4,
         ])
-        // return lhs
     }
 }
