@@ -6,9 +6,9 @@
 //             lhs[0][2] * rhs.x + lhs[1][2] * rhs.y + lhs[2][2] * rhs.z + lhs[3][2] * rhs.w,
 //             lhs[0][3] * rhs.x + lhs[1][3] * rhs.y + lhs[2][3] * rhs.z + lhs[3][3] * rhs.w)
 //     }
-    
+
 //     static func * (lhs: Mat4<T>, rhs: Mat4<T>) -> Mat4<T> {
-//         let col1 = 
+//         let col1 =
 //         [
 //             lhs.data[0][0] * rhs.data[0][0] + lhs.data[0][1] * rhs.data[1][0] + lhs.data[0][2] * rhs.data[2][0] + lhs.data[0][3] * rhs.data[3][0],
 //             lhs.data[0][0] * rhs.data[0][1] + lhs.data[0][1] * rhs.data[1][1] + lhs.data[0][2] * rhs.data[2][1] + lhs.data[0][3] * rhs.data[3][1],

@@ -1,12 +1,13 @@
 import XCTest
+
 @testable import SwiftMath
 
 class DVec3Tests: XCTestCase {
     func testInit() {
-       let expected: [Double] = [1, 2, 3]
-       let candidate = DVec3(x: 1, y: 2, z: 3)
-       let actual = [candidate.x, candidate.y, candidate.z]
-       XCTAssertEqual(actual, expected, "Init failed")
+        let expected: [Double] = [1, 2, 3]
+        let candidate = DVec3(x: 1, y: 2, z: 3)
+        let actual = [candidate.x, candidate.y, candidate.z]
+        XCTAssertEqual(actual, expected, "Init failed")
     }
 
     func testAlmostEqual() {
@@ -17,13 +18,13 @@ class DVec3Tests: XCTestCase {
         let expected: [[Double]] = [
             [1, 0, 0],
             [0, 1, 0],
-            [0, 0, 1]
+            [0, 0, 1],
         ]
         let actual = [
             DVec3.xUnit,
             DVec3.yUnit,
             DVec3.zUnit,
-        ].map { v in [v.x, v.y, v.z]}
+        ].map { v in [v.x, v.y, v.z] }
         XCTAssertEqual(actual, expected, "Axial Units failed")
     }
 
@@ -35,7 +36,7 @@ class DVec3Tests: XCTestCase {
     }
 
     func testNormalise() {
-        let expected = DVec3((1/3).squareRoot())
+        let expected = DVec3((1 / 3).squareRoot())
         let candidate = DVec3(x: 1, y: 1, z: 1)
         let actual = candidate.normalize()
         XCTAssertTrue(actual.almostEquals(expected), "Normalise failed")
