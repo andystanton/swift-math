@@ -17,6 +17,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "SwiftMathTests",
-            dependencies: ["XCTest", "SwiftMath"]),
+            dependencies: ["SwiftMath"]),
     ]
 )
