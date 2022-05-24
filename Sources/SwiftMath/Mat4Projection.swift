@@ -18,7 +18,7 @@ extension Mat4 {
         ])
     }
 
-    static func frustum(left: T, right: T, bottom: T, top: T, near: T, far: T) -> Mat4<T> where T: FloatingPoint
+    static func frustum(left: T, right: T, bottom: T, top: T, near: T, far: T) -> Mat4<T> where T: FloatingPoint {
         let col1: [T] = [2 * near / (right - left), 0, 0, 0]
         let col2: [T] = [0, 2 * near / (top - bottom), 0, 0]
         let col3: [T] = [0, 0, -(far + near) / (far - near), -1]

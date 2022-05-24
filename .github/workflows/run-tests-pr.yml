@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Checkout project including tags
       uses: actions/checkout@v3
-    - name: Set Swift version to same as Swift Playgrounds
+    - name: Get latest swift version
       uses: swift-actions/setup-swift@v1
       with:
         swift-version: "5.6"
