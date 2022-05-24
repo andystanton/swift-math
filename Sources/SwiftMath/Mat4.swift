@@ -100,16 +100,16 @@ public struct Mat4<T: FloatingPoint> {
 
 extension Mat4 {
     public init() {
-        self.init(0)
+        self.init(1)
     }
 
     public init(_ s: T) {
         self.init(
             data: [
-                [s, T.zero, T.zero, T.zero],
-                [T.zero, s, T.zero, T.zero],
-                [T.zero, T.zero, s, T.zero],
-                [T.zero, T.zero, T.zero, s],
+                [s, 0, 0, 0],
+                [0, s, 0, 0],
+                [0, 0, s, 0],
+                [0, 0, 0, s],
             ])
     }
 }
