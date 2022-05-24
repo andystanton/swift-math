@@ -92,6 +92,10 @@ public struct Mat4<T: FloatingPoint> {
             [0, 0, 0, 1],
         ])
     }
+
+    func flatten() -> [T] {
+        return self.data[0] + self.data[1] + self.data[2] + self.data[3]
+    }
 }
 
 extension Mat4 {
