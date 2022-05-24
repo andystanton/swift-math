@@ -33,8 +33,8 @@ extension Vec3: Hashable, Equatable where T: Hashable {
     }
 }
 
-extension Vec3 where T: FloatingPoint {
-    public func toSIMD() -> SIMD3<T> {
+extension Vec3 {
+    public func toSIMD() -> SIMD3<T> where T: FloatingPoint {
         return SIMD3<T>(x, y, z)
     }
 }

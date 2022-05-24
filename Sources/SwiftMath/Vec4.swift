@@ -44,8 +44,8 @@ extension Vec4: Hashable, Equatable where T: Hashable {
     }
 }
 
-extension Vec4 where T: FloatingPoint {
-    func toSIMD() -> SIMD4<T> {
+extension Vec4 {
+    func toSIMD() -> SIMD4<T> where T: FloatingPoint {
         return SIMD4<T>(x, y, z, w)
     }
 }
