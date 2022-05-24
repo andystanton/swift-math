@@ -99,6 +99,10 @@ public struct Mat4<T: FloatingPoint> {
 }
 
 extension Mat4 {
+    public init() {
+        self.init(0)
+    }
+
     public init(_ s: T) {
         self.init(
             data: [
