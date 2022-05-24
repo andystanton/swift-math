@@ -22,7 +22,7 @@ extension Mat4 {
         let col1: [T] = [2 * near / (right - left), 0, 0, 0]
         let col2: [T] = [0, 2 * near / (top - bottom), 0, 0]
         let col3: [T] = [0, 0, -(far + near) / (far - near), -1]
-        let col4: [T] = -near * (right + left) / (right - left), -near * (top + bottom) / (top - bottom), 2 * far * near / (near - far), 0]
+        let col4: [T] = [-near * (right + left) / (right - left), -near * (top + bottom) / (top - bottom), 2 * far * near / (near - far), 0]
         return Mat4(data: [
             col1,
             col2,
