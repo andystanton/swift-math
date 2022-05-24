@@ -86,7 +86,7 @@ class DMat4Tests: XCTestCase {
     func testTranslateDirectionVectorHasNoEffect() {
         let expected = FVec4(1.0, 2.0, 3.0, 0.0)
         let tMat = FMat4.translation(FVec3(4.0, 6.0, 3.0))
-        let candidate = FVec3(1.0, 2.0, 3.0).toVec()
+        let candidate = FVec3(1.0, 2.0, 3.0).toDir()
         let actual = tMat * candidate
         XCTAssertEqual(actual, expected, "Translate Direction Vector failed")
     }
