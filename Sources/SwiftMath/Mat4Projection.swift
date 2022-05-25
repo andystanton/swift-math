@@ -1,8 +1,10 @@
-import func Darwin.tanf
 import func Darwin.tan
+import func Darwin.tanf
 
 extension Mat4 {
-    public static func orthographic(left: T, right: T, bottom: T, top: T, near: T, far: T) -> Mat4<T>
+    public static func orthographic(left: T, right: T, bottom: T, top: T, near: T, far: T) -> Mat4<
+        T
+    >
     where T: FloatingPoint {
         let col1: [T] = [2 / (right - left), 0, 0, 0]
         let col2: [T] = [0, 2 / (top - bottom), 0, 0]
@@ -19,11 +21,15 @@ extension Mat4 {
         ])
     }
 
-    public static func frustum(left: T, right: T, bottom: T, top: T, near: T, far: T) -> Mat4<T> where T: FloatingPoint {
+    public static func frustum(left: T, right: T, bottom: T, top: T, near: T, far: T) -> Mat4<T>
+    where T: FloatingPoint {
         let col1: [T] = [2 * near / (right - left), 0, 0, 0]
         let col2: [T] = [0, 2 * near / (top - bottom), 0, 0]
         let col3: [T] = [0, 0, -(far + near) / (far - near), -1]
-        let col4: [T] = [-near * (right + left) / (right - left), -near * (top + bottom) / (top - bottom), 2 * far * near / (near - far), 0]
+        let col4: [T] = [
+            -near * (right + left) / (right - left), -near * (top + bottom) / (top - bottom),
+            2 * far * near / (near - far), 0,
+        ]
         return Mat4(data: [
             col1,
             col2,
@@ -32,7 +38,8 @@ extension Mat4 {
         ])
     }
 
-    public static func perspective(fov: T, aspect: T, near: T, far: T) -> Mat4<T> where T == Double {
+    public static func perspective(fov: T, aspect: T, near: T, far: T) -> Mat4<T>
+    where T == Double {
         let tanHalfFov = tan(fov / 2)
         let col1: [T] = [1 / (tanHalfFov * aspect), 0, 0, 0]
         let col2: [T] = [0, 1 / tanHalfFov, 0, 0]
