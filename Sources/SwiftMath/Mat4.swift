@@ -6,6 +6,10 @@ typealias FMat4 = Mat4<Float>
 public struct Mat4<T: FloatingPoint> {
     let data: [[T]]
 
+    public init(data: [[T]]) {
+        self.data = data
+    }
+
     public static func memorySize() -> Int {
         return MemoryLayout<T>.size * 4 * 4
     }
