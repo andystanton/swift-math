@@ -7,7 +7,7 @@ public struct Mat4<T: FloatingPoint> {
     let data: [[T]]
 
     public func memorySize() -> Long {
-        return MemoryLayout.size<T> * 4 * 4
+        return MemoryLayout<T>.size * 4 * 4
     }
 
     public subscript(index: Int) -> [T] {
