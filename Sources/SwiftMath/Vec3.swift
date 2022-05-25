@@ -68,7 +68,7 @@ public struct Vec3<T: Numeric> {
     public let y: T
     public let z: T
 
-    subscript(index: Int) -> T {
+    public subscript(index: Int) -> T {
         get {
             switch index {
             case 0: return x
@@ -79,7 +79,7 @@ public struct Vec3<T: Numeric> {
         }
     }
 
-    subscript() -> [T] {
+    public subscript() -> [T] {
         get {
             return [x, y, z]
         }
@@ -89,11 +89,11 @@ public struct Vec3<T: Numeric> {
     //     return Vec2(x: x, y: y)
     // }
 
-    func dot(_ rhs: Vec3<T>) -> T {
+    public func dot(_ rhs: Vec3<T>) -> T {
         return self.x * rhs.x + self.y * rhs.y + self.z * rhs.z
     }
 
-    func cross(_ rhs: Vec3<T>) -> Vec3<T> {
+    public func cross(_ rhs: Vec3<T>) -> Vec3<T> {
         return Vec3(
             x: self.y * rhs.z - rhs.y * self.z,
             y: self.z * rhs.x - rhs.z * self.x,
@@ -101,33 +101,33 @@ public struct Vec3<T: Numeric> {
     }
 
     // normalize not supported on integer types
-    func normalize() -> Vec3<T> where T: BinaryFloatingPoint {
+    public func normalize() -> Vec3<T> where T: BinaryFloatingPoint {
         return self / len()
     }
 
-    func len() -> T where T: BinaryFloatingPoint {
+    public func len() -> T where T: BinaryFloatingPoint {
         return (x * x + y * y + z * z).squareRoot()
     }
 
     // use float for length of integer types
-    func len() -> Float where T: BinaryInteger {
+    public func len() -> Float where T: BinaryInteger {
         return (Float(x) * Float(x) + Float(y) * Float(y) + Float(z) * Float(z)).squareRoot()
     }
 
-    func toPos() -> Vec4<T> {
+    public func toPos() -> Vec4<T> {
         return Vec4<T>(self, 1)
     }
 
-    func toDir() -> Vec4<T> {
+    public func toDir() -> Vec4<T> {
         return Vec4<T>(self, 0)
     }
 
-    func almostEquals(_ rhs: Vec3<T>) -> Bool where T == Double {
+    public func almostEquals(_ rhs: Vec3<T>) -> Bool where T == Double {
         return self.x.almostEquals(rhs.x) && self.y.almostEquals(rhs.y)
             && self.z.almostEquals(rhs.z)
     }
 
-    func almostEquals(_ rhs: Vec3<T>) -> Bool where T == Float {
+    public func almostEquals(_ rhs: Vec3<T>) -> Bool where T == Float {
         return self.x.almostEquals(rhs.x) && self.y.almostEquals(rhs.y)
             && self.z.almostEquals(rhs.z)
     }
@@ -136,40 +136,40 @@ public struct Vec3<T: Numeric> {
     //        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
     //    }
     //
-    static func + (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> {
+    public static func + (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> {
         return Vec3(x: lhs.x + rhs.x, y: lhs.y + rhs.y, z: lhs.z + rhs.z)
     }
 
-    static func - (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> {
+    public static func - (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> {
         return Vec3(x: lhs.x - rhs.x, y: lhs.y - rhs.y, z: lhs.z - rhs.z)
     }
 
-    static prefix func - (lhs: Vec3<T>) -> Vec3<T> where T: BinaryFloatingPoint {
+    public static prefix func - (lhs: Vec3<T>) -> Vec3<T> where T: BinaryFloatingPoint {
         return Vec3(x: -lhs.x, y: -lhs.y, z: -lhs.z)
     }
 
     // this is non-uniform scale, not dot product
-    static func * (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> {
+    public static func * (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> {
         return Vec3(x: lhs.x * rhs.x, y: lhs.y * rhs.y, z: lhs.z * rhs.z)
     }
 
-    static func * (lhs: Vec3<T>, s: T) -> Vec3<T> {
+    public static func * (lhs: Vec3<T>, s: T) -> Vec3<T> {
         return Vec3(x: lhs.x * s, y: lhs.y * s, z: lhs.z * s)
     }
 
-    static func / (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> where T: BinaryFloatingPoint {
+    public static func / (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> where T: BinaryFloatingPoint {
         return Vec3(x: lhs.x / rhs.x, y: lhs.y / rhs.y, z: lhs.z / rhs.z)
     }
 
-    static func / (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> where T: BinaryInteger {
+    public static func / (lhs: Vec3<T>, rhs: Vec3<T>) -> Vec3<T> where T: BinaryInteger {
         return Vec3(x: lhs.x / rhs.x, y: lhs.y / rhs.y, z: lhs.z / rhs.z)
     }
 
-    static func / (lhs: Vec3<T>, s: T) -> Vec3<T> where T: BinaryFloatingPoint {
+    public static func / (lhs: Vec3<T>, s: T) -> Vec3<T> where T: BinaryFloatingPoint {
         return Vec3(x: lhs.x / s, y: lhs.y / s, z: lhs.z / s)
     }
 
-    static func / (lhs: Vec3<T>, s: T) -> Vec3<T> where T: BinaryInteger {
+    public static func / (lhs: Vec3<T>, s: T) -> Vec3<T> where T: BinaryInteger {
         return Vec3(x: lhs.x / s, y: lhs.y / s, z: lhs.z / s)
     }
 }
