@@ -144,7 +144,7 @@ public struct Vec3<T: Numeric> {
         return Vec3(x: lhs.x - rhs.x, y: lhs.y - rhs.y, z: lhs.z - rhs.z)
     }
 
-    public static prefix func - (lhs: Vec3<T>) -> Vec3<T> where T: BinaryFloatingPoint {
+    public static prefix func - (lhs: Vec3<T>) -> Vec3<T> where T: SignedNumeric {
         return Vec3(x: -lhs.x, y: -lhs.y, z: -lhs.z)
     }
 
