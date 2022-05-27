@@ -29,13 +29,12 @@ extension Mat4 {
         ])
     }
 
-    public static func perspective(fov: T, aspect: T, near: T, far: T) -> Mat4<T>
-    where T == Double {
+    public static func perspective(fov: T, aspect: T, near: T, far: T) -> Mat4<T> where T == Double {
         let tanHalfFov = tan(fov / 2)
         let col1: [T] = [1 / (tanHalfFov * aspect), 0, 0, 0]
         let col2: [T] = [0, 1 / tanHalfFov, 0, 0]
         let col3: [T] = [0, 0, (far + near) / (far - near), 1]
-        let col4: [T] = [0, 0, (2 * far * near) / (far - near), 0]
+        let col4: [T] = [0, 0, -(2 * far * near) / (far - near), 0]
         return Mat4(data: [
             col1,
             col2,
@@ -49,7 +48,7 @@ extension Mat4 {
         let col1: [T] = [1 / (tanHalfFov * aspect), 0, 0, 0]
         let col2: [T] = [0, 1 / tanHalfFov, 0, 0]
         let col3: [T] = [0, 0, (far + near) / (far - near), 1]
-        let col4: [T] = [0, 0, (2 * far * near) / (far - near), 0]
+        let col4: [T] = [0, 0, -(2 * far * near) / (far - near), 0]
         return Mat4(data: [
             col1,
             col2,
