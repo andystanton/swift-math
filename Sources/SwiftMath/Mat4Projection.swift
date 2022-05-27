@@ -74,7 +74,7 @@ extension Mat4 {
         return Mat4<T>(data: [
             [right.x, up.x, -forward.x, -(right.dot(from))],
             [right.y, up.y, -forward.y, -(up.dot(from))],
-            [right.z, up.z, -forward.z, -(forward.dot(from))],
+            [right.z, up.z, -forward.z,  (forward.dot(from))],
             [0, 0, 0, 1],
         ])
     }
