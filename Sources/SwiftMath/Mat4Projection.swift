@@ -69,19 +69,13 @@ extension Mat4 {
 
     public static func lookAt(from: Vec3<T>, to: Vec3<T>, up: Vec3<T>) -> Mat4<T> where T: BinaryFloatingPoint {
         let forward = (to - from).normalize()
-        let right = forward.cross(up)
-        let up = right.cross(up)
+        let right = forward.cross(up).normalize()
+        let up = right.cross(forward)
         return Mat4<T>(data: [
-            [right.x, up.x, -forward.x, 0],
-            [right.y, up.y, -forward.y, 0],
-            [right.z, up.z, -forward.z, 0],
+            [right.x, up.x, -forward.x, -right.dot(from)],
+            [right.y, up.y, -forward.y, -up.dot(from)],
+            [right.z, up.z, -forward.z, -forward.dot(from)],
             [0, 0, 0, 1],
         ])
-        // return Mat4<T>(data: [
-        //     [right.x, right.y, right.z, right.dot(-from)],
-        //     [up.x, up.y, up.z, up.dot(-from)],
-        //     [forward.x, forward.y, forward.z, forward.dot(-from)],
-        //     [from.x, from.y, from.z, 1],
-        // ])
     }
 }
