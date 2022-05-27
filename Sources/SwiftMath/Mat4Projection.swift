@@ -72,9 +72,9 @@ extension Mat4 {
         let right = forward.cross(up).normalize()
         let up = right.cross(forward)
         return Mat4<T>(data: [
-            [right.x, up.x, -forward.x, -right.dot(from)],
-            [right.y, up.y, -forward.y, -up.dot(from)],
-            [right.z, up.z, -forward.z, -forward.dot(from)],
+            [right.x, up.x, -forward.x, -(right.dot(from))],
+            [right.y, up.y, -forward.y, -(up.dot(from))],
+            [right.z, up.z, -forward.z, -(forward.dot(from))],
             [0, 0, 0, 1],
         ])
     }
