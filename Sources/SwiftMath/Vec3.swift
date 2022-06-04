@@ -19,6 +19,10 @@ extension Vec3 {
     public init(_ x: T, _ y: T, _ z: T) {
         self.init(x: x, y: y, z: z)
     }
+
+    public init(_ a: [T]) {
+        self.init(x: a[0], y: a[1], z: a[2])
+    }
 }
 
 extension Vec3: Hashable, Equatable where T: Hashable {
