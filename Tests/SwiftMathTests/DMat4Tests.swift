@@ -206,4 +206,35 @@ class DMat4Tests: XCTestCase {
         }
         XCTAssertTrue(result, "Scale Direction Vector failed")
     }
+
+    func testFlatten() {
+        let expected = [
+            0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0,
+        ]
+        let candidate = Mat4(data: [
+            [0.0, 1.0, 2.0, 3.0],
+            [4.0, 5.0, 6.0, 7.0],
+            [8.0, 9.0, 10.0, 11.0],
+            [12.0, 13.0, 14.0, 15.0],
+        ])
+        let actual = candidate.flatten()
+        XCTAssertEqual(actual, expected, "Flatten failed")
+    }
+
+    func testToMat3() {
+        let expected = Mat3(data: [
+            [0.0, 1.0, 2.0],
+            [4.0, 5.0, 6.0],
+            [8.0, 9.0, 10.0],
+            [12.0, 13.0, 14.0],
+        ])
+        let candidate = Mat4(data: [
+            [0.0, 1.0, 2.0, 3.0],
+            [4.0, 5.0, 6.0, 7.0],
+            [8.0, 9.0, 10.0, 11.0],
+            [12.0, 13.0, 14.0, 15.0],
+        ])
+        let result = candidate.toMat3().almostEquals(expected)
+        XCTAssertTrue(result, "toMat3 failed")
+    }
 }
