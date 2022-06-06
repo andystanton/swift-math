@@ -11,35 +11,53 @@ extension Vec2 {
     public init(_ v: Vec2<T>) {
         self.init(x: v.x, y: v.y)
     }
+
+    public init(_ x: T, _ y: T) {
+        self.init(x: x, y: y)
+    }
+
+    public init(_ a: [T]) {
+        self.init(x: a[0], y: a[1])
+    }
 }
 
 public struct Vec2<T: Numeric> {
-    let x: T
-    let y: T
+    public let x: T
+    public let y: T
 
-    func dot(_ rhs: Vec2<T>) -> T {
+    public subscript(index: Int) -> T {
+        get {
+            switch index {
+            case 0: return x
+            case 1: return y
+            default: fatalError("Cannot access index \(index) of Vec2<\(T.self)>")
+            }
+        }
+    }
+
+    public func dot(_ rhs: Vec2<T>) -> T {
         return self.x * rhs.x + self.y * rhs.y
     }
 
     // normalize not supported on integer types
-    func normalize() -> Vec2<T> where T: BinaryFloatingPoint {
+    public func normalize() -> Vec2<T> where T: BinaryFloatingPoint {
         return self / len()
     }
 
-    func len() -> T where T: BinaryFloatingPoint {
+    public func len() -> T where T: BinaryFloatingPoint {
         return (x * x + y * y).squareRoot()
     }
 
     // use float for length of integer types
-    func len() -> Float where T: BinaryInteger {
+    public func len() -> Float where T: BinaryInteger {
         return (Float(x) * Float(x) + Float(y) * Float(y)).squareRoot()
     }
 
-    static func + (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
+    public static func + (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
         return Vec2(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
 
-    static func - (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
+    public static func - (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
         return Vec2(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
     }
 
@@ -48,27 +66,27 @@ public struct Vec2<T: Numeric> {
     }
 
     // this is non-uniform scale, not dot product
-    static func * (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
+    public static func * (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
         return Vec2(x: lhs.x * rhs.x, y: lhs.y * rhs.y)
     }
 
-    static func * (lhs: Vec2<T>, s: T) -> Vec2<T> {
+    public static func * (lhs: Vec2<T>, s: T) -> Vec2<T> {
         return Vec2(x: lhs.x * s, y: lhs.y * s)
     }
 
-    static func / (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> where T: BinaryFloatingPoint {
+    public static func / (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> where T: BinaryFloatingPoint {
         return Vec2(x: lhs.x / rhs.x, y: lhs.y / rhs.y)
     }
 
-    static func / (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> where T: BinaryInteger {
+    public static func / (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> where T: BinaryInteger {
         return Vec2(x: lhs.x / rhs.x, y: lhs.y / rhs.y)
     }
 
-    static func / (lhs: Vec2<T>, s: T) -> Vec2<T> where T: BinaryFloatingPoint {
+    public static func / (lhs: Vec2<T>, s: T) -> Vec2<T> where T: BinaryFloatingPoint {
         return Vec2(x: lhs.x / s, y: lhs.y / s)
     }
 
-    static func / (lhs: Vec2<T>, s: T) -> Vec2<T> where T: BinaryInteger {
+    public static func / (lhs: Vec2<T>, s: T) -> Vec2<T> where T: BinaryInteger {
         return Vec2(x: lhs.x / s, y: lhs.y / s)
     }
 }

@@ -89,6 +89,32 @@ public struct Mat3<T: FloatingPoint> {
     public func flatten() -> [T] {
         return self.data[0] + self.data[1] + self.data[2]
     }
+
+    public static func - (lhs: Mat3<T>, rhs: Mat3<T>) -> Mat3<T> {
+        return Mat3<T>(
+            data: zip(lhs.data, rhs.data).flatMap { zip($0.0, $0.1).map { $0.0 - $0.1 } })
+    }
+
+    public static prefix func - (lhs: Mat3<T>) -> Mat3<T> {
+        return Mat3<T>(data: lhs.data.flatMap { $0.map { -$0 } })
+    }
+
+    public func toMat2() -> Mat2<T> {
+        return Mat2<T>(data: [
+            Array(self.data[0][0...1]),
+            Array(self.data[1][0...1]),
+        ])
+    }
+
+    public func inverse() -> Mat3<T> {
+        let twoInverse = self.toMat2().inverse()
+        let twoTemp = -twoInverse * Vec2<T>(self[2][0], self[2][1])
+        return Mat3<T>(data: [
+            [twoInverse[0][0], twoInverse[0][1], 0],
+            [twoInverse[1][0], twoInverse[1][1], 0],
+            [twoTemp[0], twoTemp[1], 1],
+        ])
+    }
 }
 
 extension Mat3 {
