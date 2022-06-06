@@ -78,10 +78,12 @@ public struct Vec4<T: Numeric> {
         return Vec3(x: x, y: y, z: z)
     }
 
-    public subscript() -> [T] {
-        get {
-            return [x, y, z, w]
-        }
+    public func flatten() -> [T] {
+        return [x, y, z, w]
+    }
+
+    public func memorySize() -> Int {
+        return MemoryLayout<T>.size * 4
     }
 
     public func dot(_ rhs: Vec4<T>) -> T {

@@ -35,7 +35,7 @@ public struct Mat4<T: FloatingPoint> {
             identity[0],
             identity[1],
             identity[2],
-            tVec.toPos()[],
+            tVec.toPos().flatten(),
         ])
     }
 

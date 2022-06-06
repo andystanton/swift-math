@@ -83,10 +83,12 @@ public struct Vec3<T: Numeric> {
         }
     }
 
-    public subscript() -> [T] {
-        get {
-            return [x, y, z]
-        }
+    public func flatten() -> [T] {
+        return [x, y, z]
+    }
+
+    public func memorySize() -> Int {
+        return MemoryLayout<T>.size * 3
     }
 
     // var xy: Vec2<T> {
