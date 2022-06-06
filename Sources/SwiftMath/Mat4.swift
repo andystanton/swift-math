@@ -1,7 +1,7 @@
 import Darwin
 
-typealias DMat4 = Mat4<Double>
-typealias FMat4 = Mat4<Float>
+public typealias DMat4 = Mat4<Double>
+public typealias FMat4 = Mat4<Float>
 
 public struct Mat4<T: FloatingPoint> {
     let data: [[T]]
