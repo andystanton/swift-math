@@ -31,6 +31,25 @@ class DMat3Tests: XCTestCase {
         XCTAssertEqual(actual, expected, "Transpose failed")
     }
 
+    func testInverse() {
+        // edge case
+        // data: [
+        //     [1.0, 2.0, 3.0],
+        //     [3.0, 6.0, 9.0],
+        //     [5.0, 10.0, 15.0],
+        // ])
+        let expected = Mat3(1)
+        let candidate = DMat3(
+            data: [
+                [3.0, 2.0, 3.0],
+                [9.0, 6.0, 3.0],
+                [6.0, 10.0, 13.0],
+            ])
+        let actual = candidate * candidate.inverse()
+        let result = actual.almostEquals(expected)
+        XCTAssertTrue(result, "Inverse failed")
+    }
+
     func testVectorMultiplication() {
         let expected = DVec3(1, 2, 3)
         let identityMatrix = DMat3(1)

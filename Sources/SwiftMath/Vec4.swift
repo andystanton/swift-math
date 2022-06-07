@@ -66,6 +66,10 @@ extension Vec4 {
     public init(_ x: T, _ y: T, _ z: T, _ w: T) {
         self.init(x: x, y: y, z: z, w: w)
     }
+
+    public init(_ a: [T]) {
+        self.init(x: a[0], y: a[1], z: a[2], w: a[3])
+    }
 }
 
 public struct Vec4<T: Numeric> {

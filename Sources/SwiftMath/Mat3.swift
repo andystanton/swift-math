@@ -107,14 +107,20 @@ public struct Mat3<T: FloatingPoint> {
     }
 
     public func inverse() -> Mat3<T> {
-        let d0 = data[0][0] * (data[1][1] * data[2][2] - data[2][1] * data[1][2])
-        let d1 = data[1][0] * (data[0][1] * data[2][2] - data[2][1] * data[0][2])
-        let d2 = data[2][0] * (data[0][1] * data[1][2] - data[1][1] * data[0][2])
+        let d0: T =
+            self.data[0][0]
+            * (self.data[1][1] * self.data[2][2] - self.data[2][1] * self.data[1][2])
+        let d1: T =
+            self.data[1][0]
+            * (self.data[0][1] * self.data[2][2] - self.data[2][1] * self.data[0][2])
+        let d2: T =
+            self.data[2][0]
+            * (self.data[0][1] * self.data[1][2] - self.data[1][1] * self.data[0][2])
 
         let determinant: T = d0 - d1 + d2
 
         let oneOverDeterminant: T =
-            1 / determinant
+            T(1) / determinant
         let col1: [T] = [
             (data[1][1] * data[2][2] - data[2][1] * data[1][2]) * oneOverDeterminant,
             -(data[0][1] * data[2][2] - data[2][1] * data[0][2]) * oneOverDeterminant,
