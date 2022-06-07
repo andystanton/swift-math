@@ -107,12 +107,34 @@ public struct Mat3<T: FloatingPoint> {
     }
 
     public func inverse() -> Mat3<T> {
-        let twoInverse = self.toMat2().inverse()
-        let twoTemp = -twoInverse * Vec2<T>(self[2][0], self[2][1])
+        let d0 = data[0][0] * (data[1][1] * data[2][2] - data[2][1] * data[1][2])
+        let d1 = data[1][0] * (data[0][1] * data[2][2] - data[2][1] * data[0][2])
+        let d2 = data[2][0] * (data[0][1] * data[1][2] - data[1][1] * data[0][2])
+
+        let determinant: T = d0 - d1 + d2
+
+        let oneOverDeterminant: T =
+            1 / determinant
+        let col1: [T] = [
+            (data[1][1] * data[2][2] - data[2][1] * data[1][2]) * oneOverDeterminant,
+            -(data[0][1] * data[2][2] - data[2][1] * data[0][2]) * oneOverDeterminant,
+            (data[0][1] * data[1][2] - data[1][1] * data[0][2]) * oneOverDeterminant,
+        ]
+        let col2: [T] = [
+            -(data[1][0] * data[2][2] - data[2][0] * data[1][2]) * oneOverDeterminant,
+            (data[0][0] * data[2][2] - data[2][0] * data[0][2]) * oneOverDeterminant,
+            -(data[0][0] * data[1][2] - data[1][0] * data[0][2]) * oneOverDeterminant,
+        ]
+        let col3: [T] = [
+            (data[1][0] * data[2][1] - data[2][0] * data[1][1]) * oneOverDeterminant,
+            -(data[0][0] * data[2][1] - data[2][0] * data[0][1]) * oneOverDeterminant,
+            (data[0][0] * data[1][1] - data[1][0] * data[0][1]) * oneOverDeterminant,
+        ]
+
         return Mat3<T>(data: [
-            [twoInverse[0][0], twoInverse[0][1], 0],
-            [twoInverse[1][0], twoInverse[1][1], 0],
-            [twoTemp[0], twoTemp[1], 1],
+            col1,
+            col2,
+            col3,
         ])
     }
 }

@@ -55,10 +55,10 @@ public struct Mat2<T: FloatingPoint> {
     }
 
     public func inverse() -> Mat2<T> {
-        let twoDeterminant = data[0][0] * data[1][1] - data[1][0] * data[0][1]
+        let oneOverDeterminant = 1 / (data[0][0] * data[1][1] - data[1][0] * data[0][1])
         return Mat2<T>(data: [
-            [+data[1][1] / twoDeterminant, -data[0][1] / twoDeterminant, 0],
-            [-data[1][0] / twoDeterminant, +data[0][0] / twoDeterminant, 0],
+            [data[1][1] * oneOverDeterminant, -data[0][1] * oneOverDeterminant],
+            [-data[1][0] * oneOverDeterminant, data[0][0] * oneOverDeterminant],
 
         ])
     }
