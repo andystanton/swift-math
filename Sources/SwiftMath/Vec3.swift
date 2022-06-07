@@ -87,7 +87,7 @@ public struct Vec3<T: Numeric> {
         return [x, y, z]
     }
 
-    public func memorySize() -> Int {
+    public static func memorySize() -> Int {
         return MemoryLayout<T>.size * 3
     }
 
