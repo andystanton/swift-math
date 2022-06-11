@@ -21,6 +21,18 @@ extension Vec2 {
     }
 }
 
+extension Vec2: Hashable, Equatable where T: Hashable {
+    public static func == (lhs: Vec2, rhs: Vec2) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(x)
+        hasher.combine(y)
+    }
+}
+
+
 public struct Vec2<T: Numeric> {
     public let x: T
     public let y: T
