@@ -178,4 +178,10 @@ public struct Vec3<T: Numeric> {
     public static func / (lhs: Vec3<T>, s: T) -> Vec3<T> where T: BinaryInteger {
         return Vec3(x: lhs.x / s, y: lhs.y / s, z: lhs.z / s)
     }
+
+    public static func faceToNormal(face: [FVec3]) -> FVec3 {
+        let v0v1 = face[1] - face[0]
+        let v1v2 = face[2] - face[1]
+        return v1v2.cross(v0v1)
+    }
 }
