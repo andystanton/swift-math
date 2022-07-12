@@ -92,11 +92,11 @@ public struct Mat3<T: FloatingPoint> {
 
     public static func - (lhs: Mat3<T>, rhs: Mat3<T>) -> Mat3<T> {
         return Mat3<T>(
-            data: zip(lhs.data, rhs.data).flatMap { zip($0.0, $0.1).map { $0.0 - $0.1 } })
+            data: zip(lhs.data, rhs.data).map { zip($0.0, $0.1).map { $0.0 - $0.1 } })
     }
 
     public static prefix func - (lhs: Mat3<T>) -> Mat3<T> {
-        return Mat3<T>(data: lhs.data.flatMap { $0.map { -$0 } })
+        return Mat3<T>(data: lhs.data.map { $0.map { -$0 } })
     }
 
     public func toMat2() -> Mat2<T> {

@@ -43,11 +43,11 @@ public struct Mat2<T: FloatingPoint> {
 
     public static func - (lhs: Mat2<T>, rhs: Mat2<T>) -> Mat2<T> {
         return Mat2<T>(
-            data: zip(lhs.data, rhs.data).flatMap { zip($0.0, $0.1).map { $0.0 - $0.1 } })
+            data: zip(lhs.data, rhs.data).map { zip($0.0, $0.1).map { $0.0 - $0.1 } })
     }
 
     public static prefix func - (lhs: Mat2<T>) -> Mat2<T> {
-        return Mat2<T>(data: lhs.data.flatMap { $0.map { -$0 } })
+        return Mat2<T>(data: lhs.data.map { $0.map { -$0 } })
     }
 
     public func flatten() -> [T] {
