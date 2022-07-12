@@ -47,6 +47,10 @@ public struct Vec2<T: Numeric> {
         }
     }
 
+    public func flatten() -> [T] {
+        return [x, y]
+    }
+
     public func dot(_ rhs: Vec2<T>) -> T {
         return self.x * rhs.x + self.y * rhs.y
     }
