@@ -106,7 +106,7 @@ public struct Mat3<T: FloatingPoint> {
         ])
     }
 
-    func toMat4() -> Mat4<T> {
+    public func toMat4() -> Mat4<T> {
         return Mat4<T>(data: [
             [self[0][0], self[0][1], self[0][2], 0],
             [self[1][0], self[1][1], self[1][2], 0],
