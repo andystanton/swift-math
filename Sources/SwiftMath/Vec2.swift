@@ -1,3 +1,4 @@
+public typealias Vec2 = SIMD2
 public typealias DVec2 = Vec2<Double>
 public typealias FVec2 = Vec2<Float>
 public typealias UVec2 = Vec2<UInt>
@@ -33,7 +34,7 @@ extension Vec2: Hashable, Equatable where T: Hashable {
 }
 
 
-public struct Vec2<T: Numeric> {
+public struct Vec2Old<T: Numeric, SIMDScalar> {
     public let x: T
     public let y: T
 

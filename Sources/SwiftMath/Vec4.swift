@@ -1,3 +1,4 @@
+public typealias Vec4 = SIMD4
 public typealias DVec4 = Vec4<Double>
 public typealias FVec4 = Vec4<Float>
 public typealias IVec4 = Vec4<Int>
@@ -72,7 +73,7 @@ extension Vec4 {
     }
 }
 
-public struct Vec4<T: Numeric> {
+public struct Vec4Old<T: Numeric, SIMDScalar> {
     public let x: T
     public let y: T
     public let z: T

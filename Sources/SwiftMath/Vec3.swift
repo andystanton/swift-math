@@ -1,3 +1,4 @@
+public typealias Vec3 = SIMD3
 public typealias DVec3 = Vec3<Double>
 public typealias FVec3 = Vec3<Float>
 public typealias IVec3 = Vec3<Int>
@@ -67,7 +68,7 @@ extension Vec3 where T == UInt {
     public static var zUnit = Self(0, 0, 1)
 }
 
-public struct Vec3<T: Numeric> {
+public struct Vec3Old<T: Numeric, SIMDScalar> {
     public let x: T
     public let y: T
     public let z: T
