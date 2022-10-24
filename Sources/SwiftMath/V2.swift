@@ -10,7 +10,7 @@ extension SIMD2 {
         self.init(repeating: of)
     }
     
-    public func flatten() -> [Scalar] {
+    public var data: [Scalar] {
         return [x, y]
     }
 }

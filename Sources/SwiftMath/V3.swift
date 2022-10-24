@@ -9,11 +9,10 @@ extension SIMD3 {
     init(of: Scalar) {
         self.init(repeating: of)
     }
-
-    public func flatten() -> [Scalar] {
+    
+    public var data: [Scalar] {
         return [x, y, z]
     }
-    
 }
 
 extension SIMD3 where Scalar: FloatingPoint {

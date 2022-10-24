@@ -25,7 +25,7 @@ class FV2Tests: XCTestCase {
     func testFlatten() {
         let candidate = FV2(x: 1, y: 2)
         let expected: [Float] = [1, 2]
-        let actual = candidate.flatten()
+        let actual = candidate.data
         XCTAssertEqual(actual, expected, "Flatten Failed")
     }
     
