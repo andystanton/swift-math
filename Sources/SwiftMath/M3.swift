@@ -12,12 +12,23 @@ extension simd_float3x3 {
     }
 
     public func almostEquals(_ rhs: Self) -> Bool {
-        return self[0][0].almostEquals(rhs[0][0]) && self[0][1].almostEquals(rhs[0][1])
-            && self[0][2].almostEquals(rhs[0][2])
-            && self[1][0].almostEquals(rhs[1][0]) && self[1][1].almostEquals(rhs[1][1])
-            && self[1][2].almostEquals(rhs[1][2])
-            && self[2][0].almostEquals(rhs[2][0]) && self[2][1].almostEquals(rhs[2][1])
-            && self[2][2].almostEquals(rhs[2][2])
+        return self.columns.0.almostEquals(rhs.columns.0)
+            && self.columns.1.almostEquals(rhs.columns.1)
+            && self.columns.2.almostEquals(rhs.columns.2)
+    }
+
+    public static func scale(_ scalar: Float) -> FM3 {
+        return FM3(
+            FV3(scalar, 0, 0),
+            FV3(0, scalar, 0),
+            FV3(0, 0, scalar))
+    }
+
+    public static func scale(_ scaleVector: FV3) -> FM3 {
+        return FM3(
+            FV3(scaleVector.x, 0, 0),
+            FV3(0, scaleVector.y, 0),
+            FV3(0, 0, scaleVector.z))
     }
 
     public static func rotation(_ rVec: FV3) -> Self {
@@ -38,6 +49,13 @@ extension simd_float3x3 {
                  cos(rVec.x) * cos(rVec.y)
             )
         )
+    }
+
+    public static func translation(_ translateVec: FV2) -> FM3 {
+        return FM3(
+            FV3(1, 0, 0),
+            FV3(0, 1, 0),
+            FV3(translateVec, 1))
     }
 }
 

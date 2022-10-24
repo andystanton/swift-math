@@ -80,7 +80,7 @@ class M3Tests: XCTestCase {
         let result = resultAxB && resultBxA
         XCTAssertTrue(result, "Matrix Multiplication failed")
     }
-    
+
     func testRotatePositionVector() {
         let expected = [
             FV3(1, 0, 0),
