@@ -1,7 +1,7 @@
 import simd
 
-public typealias V4 = SIMD4
-public typealias FV4 = V4<Float>
+public typealias Vec4 = SIMD4
+public typealias FVec4 = Vec4<Float>
 
 extension SIMD4 {
     // easier to type than "repeating", but a single value version with omitted
@@ -14,8 +14,8 @@ extension SIMD4 {
         [x, y, z, w]
     }
 
-    public var xyz: [Scalar] {
-        [x, y, z]
+    public var xyz: SIMD3<Scalar> {
+        SIMD3<Scalar>(x, y, z)
     }
 }
 

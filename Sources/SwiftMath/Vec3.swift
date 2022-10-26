@@ -1,7 +1,7 @@
 import simd
 
-public typealias V3 = SIMD3
-public typealias FV3 = V3<Float>
+public typealias Vec3 = SIMD3
+public typealias FVec3 = Vec3<Float>
 
 extension SIMD3 {
     // easier to type than "repeating", but a single value version with omitted
@@ -16,12 +16,12 @@ extension SIMD3 {
 }
 
 extension SIMD3 where Scalar: FloatingPoint {
-    public func toPos() -> V4<Scalar> {
-        V4(self, 1)
+    public func toPos() -> Vec4<Scalar> {
+        Vec4(self, 1)
     }
 
-    public func toDir() -> V4<Scalar> {
-        V4(self, 0)
+    public func toDir() -> Vec4<Scalar> {
+        Vec4(self, 0)
     }
 
     public func len() -> Scalar {
