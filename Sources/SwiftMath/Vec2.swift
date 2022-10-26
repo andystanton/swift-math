@@ -1,108 +1,39 @@
-public typealias DVec2 = Vec2<Double>
+import simd
+
+public typealias Vec2 = SIMD2
 public typealias FVec2 = Vec2<Float>
-public typealias UVec2 = Vec2<UInt>
-public typealias IVec2 = Vec2<Int>
 
-extension Vec2 {
-    public init(_ s: T) {
-        self.init(x: s, y: s)
+extension SIMD2 {
+    // easier to type than "repeating", but a single value version with omitted
+    //  argument label version is already taken (and deprecated).
+    init(of: Scalar) {
+        self.init(repeating: of)
     }
 
-    public init(_ v: Vec2<T>) {
-        self.init(x: v.x, y: v.y)
-    }
-
-    public init(_ x: T, _ y: T) {
-        self.init(x: x, y: y)
-    }
-
-    public init(_ a: [T]) {
-        self.init(x: a[0], y: a[1])
+    public var data: [Scalar] {
+        [x, y]
     }
 }
 
-extension Vec2: Hashable, Equatable where T: Hashable {
-    public static func == (lhs: Vec2, rhs: Vec2) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
+extension SIMD2 where Scalar: FloatingPoint {
+    func len() -> Scalar {
+        sqrt(x * x + y * y)
     }
 
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(x)
-        hasher.combine(y)
+    func normalize() -> Self {
+        self / sqrt(x * x + y * y)
+    }
+
+    func dot(other: Self) -> Scalar {
+        x * other.x + y * other.y
     }
 }
 
+extension SIMD2 where Scalar == Float {
+    public static var xUnit = Self(x: 1, y: 0)
+    public static var yUnit = Self(x: 0, y: 1)
 
-public struct Vec2<T: Numeric> {
-    public let x: T
-    public let y: T
-
-    public subscript(index: Int) -> T {
-        get {
-            switch index {
-            case 0: return x
-            case 1: return y
-            default: fatalError("Cannot access index \(index) of Vec2<\(T.self)>")
-            }
-        }
-    }
-
-    public func flatten() -> [T] {
-        return [x, y]
-    }
-
-    public func dot(_ rhs: Vec2<T>) -> T {
-        return self.x * rhs.x + self.y * rhs.y
-    }
-
-    // normalize not supported on integer types
-    public func normalize() -> Vec2<T> where T: BinaryFloatingPoint {
-        return self / len()
-    }
-
-    public func len() -> T where T: BinaryFloatingPoint {
-        return (x * x + y * y).squareRoot()
-    }
-
-    // use float for length of integer types
-    public func len() -> Float where T: BinaryInteger {
-        return (Float(x) * Float(x) + Float(y) * Float(y)).squareRoot()
-    }
-
-    public static func + (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
-        return Vec2(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
-    }
-
-    public static func - (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
-        return Vec2(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
-    }
-
-    static prefix func - (lhs: Vec2<T>) -> Vec2<T> where T: BinaryFloatingPoint {
-        return Vec2(x: -lhs.x, y: -lhs.y)
-    }
-
-    // this is non-uniform scale, not dot product
-    public static func * (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> {
-        return Vec2(x: lhs.x * rhs.x, y: lhs.y * rhs.y)
-    }
-
-    public static func * (lhs: Vec2<T>, s: T) -> Vec2<T> {
-        return Vec2(x: lhs.x * s, y: lhs.y * s)
-    }
-
-    public static func / (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> where T: BinaryFloatingPoint {
-        return Vec2(x: lhs.x / rhs.x, y: lhs.y / rhs.y)
-    }
-
-    public static func / (lhs: Vec2<T>, rhs: Vec2<T>) -> Vec2<T> where T: BinaryInteger {
-        return Vec2(x: lhs.x / rhs.x, y: lhs.y / rhs.y)
-    }
-
-    public static func / (lhs: Vec2<T>, s: T) -> Vec2<T> where T: BinaryFloatingPoint {
-        return Vec2(x: lhs.x / s, y: lhs.y / s)
-    }
-
-    public static func / (lhs: Vec2<T>, s: T) -> Vec2<T> where T: BinaryInteger {
-        return Vec2(x: lhs.x / s, y: lhs.y / s)
+    public func almostEquals(_ rhs: Self) -> Bool {
+        x.almostEquals(rhs.x) && y.almostEquals(rhs.y)
     }
 }
