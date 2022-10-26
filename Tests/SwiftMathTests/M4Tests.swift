@@ -78,87 +78,90 @@ class M4Tests: XCTestCase {
         XCTAssertTrue(result, "Matrix Multiplication failed")
     }
 
-//     func testTranslatePositionVector() {
-//         let expected = FVec4(5.0, 8.0, 6.0, 1.0)
-//         let tMat = FMat4.translation(FVec3(4.0, 6.0, 3.0))
-//         let candidate = FVec3(1.0, 2.0, 3.0).toPos()
-//         let actual = tMat * candidate
-//         XCTAssertEqual(actual, expected, "Translate Position Vector failed")
-//     }
+     func testTranslatePositionVector() {
+         let expected = FV4(5.0, 8.0, 6.0, 1.0)
+         let tMat = FM4.translation(FV3(4.0, 6.0, 3.0))
+         let candidate = FV3(1.0, 2.0, 3.0).toPos()
+         let actual = tMat * candidate
+         XCTAssertEqual(actual, expected, "Translate Position Vector failed")
+     }
 
-//     func testTranslateDirectionVectorHasNoEffect() {
-//         let expected = FVec4(1.0, 2.0, 3.0, 0.0)
-//         let tMat = FMat4.translation(FVec3(4.0, 6.0, 3.0))
-//         let candidate = FVec3(1.0, 2.0, 3.0).toDir()
-//         let actual = tMat * candidate
-//         XCTAssertEqual(actual, expected, "Translate Direction Vector failed")
-//     }
+     func testTranslateDirectionVectorHasNoEffect() {
+         let expected = FV4(1.0, 2.0, 3.0, 0.0)
+         let tMat = FM4.translation(FV3(4.0, 6.0, 3.0))
+         let candidate = FV3(1.0, 2.0, 3.0).toDir()
+         let actual = tMat * candidate
+         XCTAssertEqual(actual, expected, "Translate Direction Vector failed")
+     }
 
-//     func testRotatePositionVector() {
-//         let expected = [
-//             DVec4(1, 0, 0, 1),
-//             DVec4(0, 1, 0, 1),
-//             DVec4(0, 0, 1, 1),
-//             DVec4(-1, 0, 0, 1),
-//             DVec4(0, -1, 0, 1),
-//             DVec4(0, 0, -1, 1),
-//         ]
-//         let angles = [
-//             DVec3(0, Double.pi / 2, 0),
-//             DVec3(0, 0, Double.pi / 2),
-//             DVec3(Double.pi / 2, 0, 0),
-//             DVec3(0, -Double.pi / 2, 0),
-//             DVec3(0, 0, -Double.pi / 2),
-//             DVec3(-Double.pi / 2, 0, 0),
-//         ]
-//         let candidates = [
-//             DVec4(0, 0, 1, 1),
-//             DVec4(1, 0, 0, 1),
-//             DVec4(0, 1, 0, 1),
-//             DVec4(0, 0, 1, 1),
-//             DVec4(1, 0, 0, 1),
-//             DVec4(0, 1, 0, 1),
-//         ]
-//         let result = (0..<candidates.count).reduce(true) { result, i in
-//             let tMat = DMat4.rotation(angles[i])
-//             let newResult = result && (expected[i].almostEquals(tMat * candidates[i]))
-//             return newResult
-//         }
-//         XCTAssertTrue(result, "Rotate Position Vector failed")
-//     }
+     func testRotatePositionVector() {
+         let expected = [
+             FV4(1, 0, 0, 1),
+             FV4(0, 1, 0, 1),
+             FV4(0, 0, 1, 1),
+             FV4(-1, 0, 0, 1),
+             FV4(0, -1, 0, 1),
+             FV4(0, 0, -1, 1),
+         ]
+         let angles = [
+             FV3(0, Float.pi / 2, 0),
+             FV3(0, 0, Float.pi / 2),
+             FV3(Float.pi / 2, 0, 0),
+             FV3(0, -Float.pi / 2, 0),
+             FV3(0, 0, -Float.pi / 2),
+             FV3(-Float.pi / 2, 0, 0),
+         ]
+         let candidates = [
+             FV4(0, 0, 1, 1),
+             FV4(1, 0, 0, 1),
+             FV4(0, 1, 0, 1),
+             FV4(0, 0, 1, 1),
+             FV4(1, 0, 0, 1),
+             FV4(0, 1, 0, 1),
+         ]
+         let result = (0..<candidates.count).reduce(true) { result, i in
+             let tMat = FM4.rotation(angles[i])
+             let newResult = (expected[i].almostEquals(candidates[i] * tMat))
+             if !newResult {
+                 print("\(expected[i]) did not equal \(candidates[i] * tMat)")
+             }
+             return result && newResult
+         }
+         XCTAssertTrue(result, "Rotate Position Vector failed")
+     }
 
-//     func testRotateDirectionVector() {
-//         let expected = [
-//             DVec4(1, 0, 0, 0),
-//             DVec4(0, 1, 0, 0),
-//             DVec4(0, 0, 1, 0),
-//             DVec4(-1, 0, 0, 0),
-//             DVec4(0, -1, 0, 0),
-//             DVec4(0, 0, -1, 0),
-//         ]
-//         let angles = [
-//             DVec3(0, Double.pi / 2, 0),
-//             DVec3(0, 0, Double.pi / 2),
-//             DVec3(Double.pi / 2, 0, 0),
-//             DVec3(0, -Double.pi / 2, 0),
-//             DVec3(0, 0, -Double.pi / 2),
-//             DVec3(-Double.pi / 2, 0, 0),
-//         ]
-//         let candidates = [
-//             DVec4(0, 0, 1, 0),
-//             DVec4(1, 0, 0, 0),
-//             DVec4(0, 1, 0, 0),
-//             DVec4(0, 0, 1, 0),
-//             DVec4(1, 0, 0, 0),
-//             DVec4(0, 1, 0, 0),
-//         ]
-//         let result = (0..<candidates.count).reduce(true) { result, i in
-//             let tMat = DMat4.rotation(angles[i])
-//             let newResult = result && (expected[i].almostEquals(tMat * candidates[i]))
-//             return newResult
-//         }
-//         XCTAssertTrue(result, "Rotate Direction Vector failed")
-//     }
+     func testRotateDirectionVector() {
+         let expected = [
+             FV4(1, 0, 0, 0),
+             FV4(0, 1, 0, 0),
+             FV4(0, 0, 1, 0),
+             FV4(-1, 0, 0, 0),
+             FV4(0, -1, 0, 0),
+             FV4(0, 0, -1, 0),
+         ]
+         let angles = [
+             FV3(0, Float.pi / 2, 0),
+             FV3(0, 0, Float.pi / 2),
+             FV3(Float.pi / 2, 0, 0),
+             FV3(0, -Float.pi / 2, 0),
+             FV3(0, 0, -Float.pi / 2),
+             FV3(-Float.pi / 2, 0, 0),
+         ]
+         let candidates = [
+             FV4(0, 0, 1, 0),
+             FV4(1, 0, 0, 0),
+             FV4(0, 1, 0, 0),
+             FV4(0, 0, 1, 0),
+             FV4(1, 0, 0, 0),
+             FV4(0, 1, 0, 0),
+         ]
+         let result = (0..<candidates.count).reduce(true) { result, i in
+             let tMat = FM4.rotation(angles[i])
+             let newResult = result && (expected[i].almostEquals(candidates[i] * tMat))
+             return newResult
+         }
+         XCTAssertTrue(result, "Rotate Direction Vector failed")
+     }
 
 //     func testScalePositionVector() {
 //         let expected = [

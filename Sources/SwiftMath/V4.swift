@@ -13,6 +13,10 @@ extension SIMD4 {
     public var data: [Scalar] {
         [x, y, z, w]
     }
+
+    public var xyz: [Scalar] {
+        [x, y, z]
+    }
 }
 
 extension SIMD4 where Scalar: FloatingPoint {
