@@ -11,36 +11,36 @@ extension SIMD3 {
     }
 
     public var data: [Scalar] {
-        return [x, y, z]
+        [x, y, z]
     }
 }
 
 extension SIMD3 where Scalar: FloatingPoint {
     public func toPos() -> V4<Scalar> {
-        return V4(self, 1)
+        V4(self, 1)
     }
 
     public func toDir() -> V4<Scalar> {
-        return V4(self, 0)
+        V4(self, 0)
     }
 
     public func len() -> Scalar {
-        return sqrt(x * x + y * y + z * z)
+        sqrt(x * x + y * y + z * z)
     }
 
     public func normalize() -> Self {
-        return self / self.len()
+        self / len()
     }
 
     public func dot(_ other: Self) -> Scalar {
-        return x * other.x + y * other.y + z * other.z
+        x * other.x + y * other.y + z * other.z
     }
 
     public func cross(_ other: Self) -> Self {
-        return Self(
-            x: self.y * other.z - other.y * self.z,
-            y: self.z * other.x - other.z * self.x,
-            z: self.x * other.y - other.x * self.y)
+        Self(
+                x: y * other.z - other.y * z,
+                y: z * other.x - other.z * x,
+                z: x * other.y - other.x * y)
     }
 
     public static func faceToNormal(face: [Self]) -> Self {
@@ -56,8 +56,8 @@ extension SIMD3 where Scalar == Float {
     public static var zUnit = Self(x: 0, y: 0, z: 1)
 
     public func almostEquals(_ rhs: Self) -> Bool {
-        return self.x.almostEquals(rhs.x)
-            && self.y.almostEquals(rhs.y)
-            && self.z.almostEquals(rhs.z)
+        x.almostEquals(rhs.x)
+                && y.almostEquals(rhs.y)
+                && z.almostEquals(rhs.z)
     }
 }

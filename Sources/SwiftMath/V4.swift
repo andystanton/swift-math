@@ -9,24 +9,23 @@ extension SIMD4 {
     init(of: Scalar) {
         self.init(repeating: of)
     }
-    
-    public func flatten() -> [Scalar] {
-        return [x, y, z, w]
+
+    public var data: [Scalar] {
+        [x, y, z, w]
     }
-    
 }
 
 extension SIMD4 where Scalar: FloatingPoint {
     public func len() -> Scalar {
-        return sqrt(x * x + y * y + z * z + w * w)
+        sqrt(x * x + y * y + z * z + w * w)
     }
-    
+
     public func normalize() -> Self {
-        return self / self.len()
+        self / len()
     }
-    
+
     public func dot(_ other: Self) -> Scalar {
-        return x * other.x + y * other.y + z * other.z + w * other.w
+        x * other.x + y * other.y + z * other.z + w * other.w
     }
 }
 
@@ -35,11 +34,11 @@ extension SIMD4 where Scalar == Float {
     public static var yUnit = Self(x: 0, y: 1, z: 0, w: 0)
     public static var zUnit = Self(x: 0, y: 0, z: 1, w: 0)
     public static var wUnit = Self(x: 0, y: 0, z: 0, w: 1)
-    
-    public func almostEquals(_ rhs: Self) -> Bool {
-        return self.x.almostEquals(rhs.x)
-            && self.y.almostEquals(rhs.y)
-            && self.z.almostEquals(rhs.z)
-            && self.w.almostEquals(rhs.w)
+
+    public func almostEquals(_ other: Self) -> Bool {
+        x.almostEquals(other.x)
+                && y.almostEquals(other.y)
+                && z.almostEquals(other.z)
+                && w.almostEquals(other.w)
     }
 }

@@ -80,41 +80,4 @@ class M3Tests: XCTestCase {
         let result = resultAxB && resultBxA
         XCTAssertTrue(result, "Matrix Multiplication failed")
     }
-
-    func testRotatePositionVector() {
-        let expected = [
-            FV3(1, 0, 0),
-            FV3(0, 1, 0),
-            FV3(0, 0, 1),
-            FV3(-1, 0, 0),
-            FV3(0, -1, 0),
-            FV3(0, 0, -1),
-        ]
-        let angles = [
-            FV3(0, Float.pi / 2, 0),
-            FV3(0, 0, Float.pi / 2),
-            FV3(Float.pi / 2, 0, 0),
-            FV3(0, -Float.pi / 2, 0),
-            FV3(0, 0, -Float.pi / 2),
-            FV3(-Float.pi / 2, 0, 0),
-        ]
-        let candidates = [
-            FV3(0, 0, 1),
-            FV3(1, 0, 0),
-            FV3(0, 1, 0),
-            FV3(0, 0, 1),
-            FV3(1, 0, 0),
-            FV3(0, 1, 0),
-        ]
-        let result = (0..<candidates.count).reduce(true) { result, i in
-            let tMat = FM3.rotation(angles[i])
-            let newResult = result && (expected[i].almostEquals(candidates[i] * tMat))
-            if !newResult {
-                print("\(expected[i]) != \(candidates[i] * tMat) but would have equalled \(tMat * candidates[i])")
-            }
-            return newResult
-        }
-        XCTAssertTrue(result, "Rotate Position Vector failed")
-    }
-
 }
