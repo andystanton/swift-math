@@ -13,6 +13,10 @@ extension SIMD3 {
     public var data: [Scalar] {
         [x, y, z]
     }
+
+    public var flatten: [Scalar] {
+        [x, y, z]
+    }
 }
 
 extension SIMD3 where Scalar: FloatingPoint {
