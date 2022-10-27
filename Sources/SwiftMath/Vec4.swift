@@ -14,6 +14,10 @@ extension SIMD4 {
         [x, y, z, w]
     }
 
+    public var flatten: [Scalar] {
+        [x, y, z, w]
+    }
+
     public var xyz: SIMD3<Scalar> {
         SIMD3<Scalar>(x, y, z)
     }

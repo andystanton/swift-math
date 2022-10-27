@@ -11,6 +11,10 @@ extension simd_float3x3 {
         ]
     }
 
+    public var flatten: [Float] {
+        columns.0.data + columns.1.data + columns.2.data
+    }
+
     public func almostEquals(_ other: Self) -> Bool {
         columns.0.almostEquals(other.columns.0)
                 && columns.1.almostEquals(other.columns.1)
