@@ -1,4 +1,4 @@
-import simd
+@_exported import simd
 
 public typealias FMat3 = simd_float3x3
 

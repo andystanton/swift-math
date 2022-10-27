@@ -1,7 +1,6 @@
 import XCTest
 
 @testable import SwiftMath
-import simd
 
 class M3Tests: XCTestCase {
     func testInit() {
