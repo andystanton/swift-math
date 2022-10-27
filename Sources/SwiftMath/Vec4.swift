@@ -1,4 +1,4 @@
-import simd
+@_exported import simd
 
 public typealias Vec4 = SIMD4
 public typealias FVec4 = Vec4<Float>

@@ -9,26 +9,26 @@ class FVec3Tests: XCTestCase {
         let actual = [candidate.x, candidate.y, candidate.z]
         XCTAssertEqual(actual, expected, "Init failed")
     }
-    
+
     func testAlmostEqual() {
         XCTAssertTrue(FVec3(of: 1.231999999).almostEquals(FVec3(of: 1.232)), "Almost Equal failed")
         XCTAssertFalse(FVec3(of: 1.231).almostEquals(FVec3(of: 1.232)), "Almost Equal failed")
     }
-    
+
     func testSubscriptAccess() {
         let candidate = FVec3(x: 1, y: 2, z: 3)
         let expected: [Float] = [1, 2, 3]
         let actual = [0, 1, 2].map { candidate[$0] }
         XCTAssertEqual(actual, expected, "Axial Units failed")
     }
-    
+
     func testFlatten() {
         let candidate = FVec3(x: 1, y: 2, z: 3)
         let expected: [Float] = [1, 2, 3]
         let actual = candidate.data
         XCTAssertEqual(actual, expected, "Flatten Failed")
     }
-    
+
     func testAxialUnitConstants() {
         let expected: [[Float]] = [
             [1, 0, 0],
@@ -42,21 +42,21 @@ class FVec3Tests: XCTestCase {
         ].map { v in [v.x, v.y, v.z] }
         XCTAssertEqual(actual, expected, "Axial Units failed")
     }
-    
+
     func testLength() {
         let expected: Float = 7
         let candidate = FVec3(x: 2, y: 3, z: 6)
         let actual = candidate.len()
         XCTAssertEqual(actual, expected, "Length failed")
     }
-    
+
     func testNormalise() {
         let expected = FVec3(of: (1 / 3).squareRoot())
         let candidate = FVec3(x: 1, y: 1, z: 1)
         let actual = candidate.normalize()
         XCTAssertTrue(actual.almostEquals(expected), "Normalise failed")
     }
-    
+
 
     func testUniformScale() {
         let expected = FVec3(x: 2, y: 4, z: 6)
