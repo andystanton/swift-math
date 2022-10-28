@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftMath",
-    platforms: [.iOS("16.1")],
+    platforms: [.iOS("16")],
     products: [
         .library(
             name: "SwiftMath",
