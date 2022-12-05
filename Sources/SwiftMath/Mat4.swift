@@ -73,4 +73,50 @@ extension simd_float4x4 {
                 col3,
                 FVec4(0, 0, 0, 1))
     }
+
+    public static func rotationYawPitchRollExtrinsic(_ rVec: FVec3) -> Self {
+        let col1 = FVec4(
+                cos(rVec.y) * cos(rVec.z),
+                sin(rVec.x) * sin(rVec.y) * cos(rVec.z) - cos(rVec.x) * sin(rVec.z),
+                cos(rVec.x) * sin(rVec.y) * cos(rVec.z) + sin(rVec.x) * sin(rVec.z),
+                0)
+        let col2 = FVec4(
+                cos(rVec.y) * sin(rVec.z),
+                sin(rVec.x) * sin(rVec.y) * sin(rVec.z) + cos(rVec.x) * cos(rVec.z),
+                cos(rVec.x) * sin(rVec.y) * sin(rVec.z) - sin(rVec.x) * cos(rVec.z),
+                0)
+        let col3 = FVec4(
+                -sin(rVec.y),
+                sin(rVec.x) * cos(rVec.y),
+                cos(rVec.x) * cos(rVec.y),
+                0)
+        return FMat4(
+                col1,
+                col2,
+                col3,
+                FVec4(0, 0, 0, 1))
+    }
+
+    public static func rotationYawPitchRollIntrinsic(_ rVec: FVec3) -> Self {
+        let col1 = FVec4(
+                cos(rVec.x) * cos(rVec.y),
+                cos(rVec.x) * sin(rVec.y) * sin(rVec.z) - sin(rVec.x) * cos(rVec.z),
+                cos(rVec.x) * sin(rVec.y) * cos(rVec.z) + sin(rVec.x) * sin(rVec.z),
+                0)
+        let col2 = FVec4(
+                sin(rVec.x) * cos(rVec.y),
+                sin(rVec.x) * sin(rVec.y) * sin(rVec.z) + cos(rVec.x) * cos(rVec.z),
+                sin(rVec.x) * sin(rVec.y) * cos(rVec.z) - cos(rVec.x) * sin(rVec.z),
+                0)
+        let col3 = FVec4(
+                -sin(rVec.y),
+                cos(rVec.y) * sin(rVec.z),
+                cos(rVec.y) * cos(rVec.z),
+                0)
+        return FMat4(
+                col1,
+                col2,
+                col3,
+                FVec4(0, 0, 0, 1))
+    }
 }
